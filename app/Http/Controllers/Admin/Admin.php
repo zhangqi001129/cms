@@ -17,4 +17,32 @@ class Admin extends Controller
        $user=UserModel::where(['u_id'=>$id])->first()->toArray();
        echo '<pre>';print_r($user);echo '</pre>';
     }
+    /* 添加*/
+    public function add(){
+        $data=[
+            'username'=>'素素',
+            'pwd'=>'123456'
+        ];
+        UserModel::insert($data);
+    }
+    /* 删除*/
+    public function del($id){
+        UserModel::where(['u_id'=>$id])->delete();
+    }
+    /*修改*/
+    public function up($id){
+        $data=[
+            'username'=>'素素',
+            'pwd'=>'123456'
+        ];
+        UserModel::where(['u_id'=>$id])->update($data);
+    }
+    /*展示*/
+    public function show(){
+        $data=UserModel::all();
+        $list=[
+            'data'=>$data
+        ];
+        return view('Admin/show',$list);
+    }
 }
